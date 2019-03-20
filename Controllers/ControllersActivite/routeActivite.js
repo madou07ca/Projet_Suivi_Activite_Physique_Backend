@@ -61,7 +61,7 @@ router.route('/activite').post((req, res) => {
 router.route('/Activite/:ActiviteID').put((req, res) => {
 	//Methode find sur l'iD
 	//let id = req.params.activiteID
-	activiteModel.findOne({_id : req.params.ActiviteID}, (err) => {
+	activiteModel.findByIdAndUpdate({_id : req.params.ActiviteID}, (err) => {
 		if(err){
 			res.send(err);
 		}
