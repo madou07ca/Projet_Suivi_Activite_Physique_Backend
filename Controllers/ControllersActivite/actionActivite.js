@@ -1,47 +1,57 @@
- //Requete d'interaction avec le serveur
-import Requests from './processActivite';
- //Cette méthode sera appelée lorsque l'utilisateur décidera d'appuyer sur le bouton d'envoi
-  // Il va vérifier si tous les champs sont remplis
-  checkFields = () => {
-    const {sport, douleurAvant, douleurApres} = this.state;
-    let message = "";
-    if(sport === ''){
-    message += "Sport ";
-    }
-    if(douleurAvant === ''){ 
-    message += "Douleur Avant ";
-    }
-    if(douleurApres === ''){ 
-    message += "Douleur Apres ";
-    }
-    return message;
-}
+ const DOMAIN = "http://172.20.10.3:3030"; //Domain:port 
+const API_URL = `${DOMAIN}/api/activite`;
 
-submitActivites = () => {
-    // state
-    const {id, sport, douleurAvant, douleurApres} = this.state;
-    const submittedActivites = {sport, douleurAvant, douleurApres};
-    //Vérification
-    const error = this.checkFields();
-    //S'il y a des champs vides
-    if(error !== ''){
-      //Envoyé un message d'erreur
-      errorMessage = `Veuillez remplir les champs suivant: \n ${error}`;
-      //ToastAndroid.show(errorMessage, ToastAndroid.SHORT);
-      console.log(errorMessage)
-      return;
-    }
-    //Sinon, faites la requete
-    let request;
-    //Si id est vide, nous ajoutons une nouvelle activité.
-      if(id === '' || id === undefined){
-      request = Requests.postRequest(submittedActivites);
-       alert('Ajouté');
-    //Sinon, nous mettons à jour une activité
-    } else{
-      request = Requests.putRequest(id, submittedActivites);
-    }
+//Headers for PUT and POST requests 
+const fetchHeaders = {
+	'Accept': 'application/json', 
+  'Content-Type': 'application/json'
+};
 
-    //Mettre à jour l'état de l'activité, de l'écran d'accueil, et revenir à l'écran d'accueil
-     //this.props.navigation.navigate('Home');
-  }
+var Requests = {
+
+	getRequest: () => {
+		return fetch(API_URL).then(resp => resp.json());
+	},
+	postRequest: (newActivites) => {
+		const activitesJSON = JSON.stringify(newActivites);
+		//Define method, headers and body to send to the server
+		const params = {
+			method: 'POST',
+			headers: fetchHeaders,
+			body: activitesJSON
+		};
+		return fetch(API_URL, params).then(resp => resp.json());
+  },
+  
+   //Requete de mise à jour (update)
+	putRequest: (activitesID, updatedActivites) => {
+		//Build URL to request PUT
+		const requestURL = `${API_URL}/${activitesID}`;
+		//Convert data to JSON
+		const activitesJSON = JSON.stringify(updatedActivites);
+		//Define method, headers and body to send to the server
+		const params = {
+			method: 'PUT',
+			headers: fetchHeaders,
+			body: activitesJSON
+		};
+		return fetch(requestURL, params).then(resp => resp.json());
+	},
+
+	//DELETE: DELETE a activites in the database identified by its ID
+	//Convert response to JSON the json will contain
+	//A successful message or an error (debug)
+	deleteRequest: (activitesID) => {
+		//Build URL to request DELETE
+		const requestURL = `${API_URL}/${activitesID}`;
+		//Define method
+		const params = {
+			method: 'DELETE'
+		};
+		return fetch(requestURL, params).then(resp => resp.json());
+	}
+
+
+};
+
+export default Requests; 
