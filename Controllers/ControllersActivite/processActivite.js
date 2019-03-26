@@ -92,10 +92,7 @@ router.route('/Activite/:ActiviteID').put((req, res) => {
 //Register routes
 app.use('/api', router);
 
-
-
 app.listen(port);
-//Console.log("Le serveur écoute sur le port:" + port);
 
 
 
