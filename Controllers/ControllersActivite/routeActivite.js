@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var activiteModel  = require('./modelsActivite');
+var activiteModel  = require('../../Models/modelsActivite');
 //D:\Projet_S_A_P\Dossier_backup\Projet_Suivi_Activite_Physique-echappe-front\Models\modelsActivite.js
 
 
