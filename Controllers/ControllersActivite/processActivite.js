@@ -32,7 +32,8 @@ router.route('/activite').post((req, res) => {
 	if(Object.keys(req.body).length === 7) {
 		//Date et heure
 		var now = new Date();
-		var date = now.getDate() + "/" + now.getMonth() + "/" + now.getFullYear() ;
+		var mois = now.getMonth() + 1 ;
+		var date = now.getDate() + "/" + mois + "/" + now.getFullYear() ;
 		var heure = now.getHours() + ":" + now.getMinutes();
 		//Attributs
 		const {sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree} = req.body;
