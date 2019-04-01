@@ -5,43 +5,27 @@ var activiteModel  = require('../../Models/modelsActivite');
 
 
 module.exports = {
-	creerActivite : (res, req) => {
+	creerActivite : (req , res) => {
 	
-		//if(Object.keys(req.body).length === 7) {
+		if(Object.keys(req.body).length === 7) {
 			//Date et heure
 			var now = new Date();
 			var mois = now.getMonth() + 1 ;
 			var date = now.getDate() + "/" + mois + "/" + now.getFullYear() ;
 			var heure = now.getHours() + ":" + now.getMinutes();
 			//Attributs
-			//const {sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree} = req.body;
-			/* const sport = req.body.sport
-			const douleurAvant = req.body.douleurAvant
-			const douleurApres = req.body.douleurApres
-			const zoneDouleurAvant = req.body.zoneDouleurAvant
-			const zoneDouleurApres = req.body.zoneDouleurApres
-			const nbKilometre = req.body.nbKilometre
-			const duree = req.body.duree */
+			const {sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree} = req.body;
+			
 			//Créer un nouveau modèle d'activité
-			let activite = new activiteModel({
-				sport : req.body.sport , 
-				douleurAvant : req.body.douleurAvant, 
-				douleurApres : req.body.douleurApres,
-				zoneDouleurAvant : req.body.zoneDouleurAvant, 
-				zoneDouleurApres : req.body.zoneDouleurApres, 
-				nbKilometre : req.body.nbKilometre,
-				duree : req.body.duree,
-				date, 
-				heure
-			});
+			let activite = new activiteModel({sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree, date , heure});
 			//enregistrer ds la BDD
 			activite.save(err => {
 				//Si une erreur est survenue lors de la sauvegarde, envoyez-la. Sinon, envoyez un message de confirmation
 				err ? res.send(err) : res.json({message: 'Activite crée!'});
 			});	
-		//} else{
-		//	res.json({error: "Vérifier les champs requis: sport, douleurAvant, douleurApres."});
-		//}
+		} else{
+			res.json({error: "Vérifier les champs requis: sport, douleurAvant, douleurApres."});
+		}
 		
 	},
 
