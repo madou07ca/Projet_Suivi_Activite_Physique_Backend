@@ -1,17 +1,40 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-//var activiteModel  = require('./modelsActivite');
-//D:\Projet_S_A_P\Dossier_backup\Projet_Suivi_Activite_Physique-echappe-front\Models\modelsActivite.js
+var actionActivite = require ('./actionActivite');
 
 
 var router = express.Router();
 
 //const port = 3030; //Port
 
-const activite_process = require('./processActivite');
+//const activite_process = require('./processActivite');
+
+router.use(bodyParser.json());
 
 
-router.get('/', activite_process);
+//Creer une activite (POST)
+router.route('/activite').post((req, res) => {
+    actionActivite.creerActivite(res,req);
+	
+})
+//GET 
+.get((req, res) => {
+	actionActivite.afficherListeActivite(res,req);
+});
+
+//UPDATE
+router.route('/Activite/:ActiviteID').put((req, res) => {
+	actionActivite.modifierActivite(res,req);
+})
+//DELETE
+.delete((req,res) => {
+	actionActivite.supprimerActivite(res,req);
+});
+
+module.exports = router;
+
+
+/* router.get('/', activite_process);
 
 //Post
 router.post('/newActivite', activite_process.createActivite);
@@ -27,7 +50,7 @@ router.put('/Activite/:ActiviteID', activite_process.activiteUpdate);
 
 
 //Delete
-router.delete('/Activite/:ActiviteID', activite_process.activiteDelete);
+router.delete('/Activite/:ActiviteID', activite_process.activiteDelete); */
 
 
 

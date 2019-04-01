@@ -2,7 +2,7 @@ const mongoose = require('mongoose'); //Library for MongoDB
 //BDD locale
 //const db = require ('./../DB')
 //mongoose.connect('db', {useNewUrlParser: true});
-mongoose.connect('mongodb://localhost:27017/projet', {useNewUrlParser: true});
+//mongoose.connect('mongodb://localhost:27017/projet', {useNewUrlParser: true});
 
 //Model
 const Activite = mongoose.model('Activite', {

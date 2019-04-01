@@ -1,4 +1,31 @@
- const DOMAIN = "http://172.20.10.3:3030"; //Domain:port 
+ const processActivite = require('./processActivite');
+
+ module.exports = {
+
+	creerActivite(req, res){
+		processActivite.creerActivite(res, req);
+	},
+
+	afficherListeActivite(res, req){
+		processActivite.afficherListeActivite(res, req);
+	},
+
+	modifierActivite(res, req){
+		processActivite.modifierActivite(res, req);
+	},
+
+	supprimerActivite(res, req){
+		processActivite.supprimerActivite(res,req);
+	}
+
+
+ };
+ 
+ 
+ 
+ 
+ 
+ /* const DOMAIN = "http://172.20.10.3:3030"; //Domain:port 
 const API_URL = `${DOMAIN}/api/activite`;
 
 //Headers for PUT and POST requests 
@@ -54,4 +81,4 @@ var Requests = {
 
 };
 
-export default Requests; 
+export default Requests;  */
