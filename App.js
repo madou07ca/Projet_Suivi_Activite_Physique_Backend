@@ -20,10 +20,12 @@ app.use(bodyParser.json());
 
 
 var activite = require('./Models/modelsActivite');
+var sport = require('./Models/modelsSport');
 
 
 //Routes
 app.use('/', require('./Controllers/ControllersActivite/routeActivite'))
+app.use('/', require('./Controllers/ControllersSport/routeSport'))
 
 
 app.listen(3030);
