@@ -9,14 +9,14 @@ var router = express.Router();
 router.use(bodyParser.json());
 
 
-//Creer une activite (POST)
+//Creer un user (POST)
 router.route('/users').post((req, res) => {
     actionUsers.creerUser(res,req);
 	
 })
 //GET 
 .get((req, res) => {
-	actionUsers.afficherListeUser(res,req);
+	actionUsers.afficherListeUsers(res,req);
 });
 
 module.exports = router;

@@ -21,11 +21,13 @@ app.use(bodyParser.json());
 
 var activite = require('./Models/modelsActivite');
 var sport = require('./Models/modelsSport');
+var sport = require('./Models/modelsUsers');
 
 
 //Routes
 app.use('/', require('./Controllers/ControllersActivite/routeActivite'))
 app.use('/', require('./Controllers/ControllersSport/routeSport'))
+app.use('/', require('./Controllers/ControllersUsers/routeUsers'))
 
 
 app.listen(3030);
