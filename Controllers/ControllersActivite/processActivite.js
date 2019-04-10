@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var moment = require('moment');
 ObjectId = mongoose.Types.ObjectId;
 var activiteModel  = require('../../Models/modelsActivite');
 
@@ -8,11 +9,9 @@ module.exports = {
 	creerActivite : (req , res) => {
 	
 		if(Object.keys(req.body).length === 7) {
-			//Date et heure
-			var now = new Date();
-			var mois = now.getMonth() + 1 ;
-			var date = now.getDate() + "/" + mois + "/" + now.getFullYear() ;
-			var heure = now.getHours() + ":" + now.getMinutes();
+			// Heure et Date
+			var heure = new moment().format('HH') + ":" + new moment().format('mm');
+			var date = new moment().format('DD') + "/" + new moment().format('MM') + "/" + new moment().format('YYYY');
 			//Attributs
 			const {sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree} = req.body;
 			
