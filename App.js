@@ -7,6 +7,9 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+//Port
+const port = 3030;
+
 //mongoose.connect('mongodb://localhost:27017/projet');
 
 mongoose.connect('mongodb://localhost:27017/projet', {useNewUrlParser: true});
@@ -29,5 +32,6 @@ app.use('/', require('./Controllers/ControllersActivite/routeActivite'))
 app.use('/', require('./Controllers/ControllersSport/routeSport'))
 app.use('/', require('./Controllers/ControllersUsers/routeUsers'))
 
-
-app.listen(3030);
+app.listen(port, () => {
+    console.log('Le serveur est opérationnel sur le numéro de port ' + port);
+});
