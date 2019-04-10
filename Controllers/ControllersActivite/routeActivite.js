@@ -34,24 +34,6 @@ router.route('/Activite/:ActiviteID').put((req, res) => {
 module.exports = router;
 
 
-/* router.get('/', activite_process);
-
-//Post
-router.post('/newActivite', activite_process.createActivite);
-
-//get en fonction de l'id
-router.get('/Activite/:ActiviteID', activite_process.activiteDetails);
-
-//get listes des activités
-router.get('/Activite', activite_process.listeActivites);
-
-//update
-router.put('/Activite/:ActiviteID', activite_process.activiteUpdate);
-
-
-//Delete
-router.delete('/Activite/:ActiviteID', activite_process.activiteDelete); */
-
 
 
 
