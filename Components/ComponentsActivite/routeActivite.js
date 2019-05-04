@@ -14,21 +14,21 @@ router.use(bodyParser.json());
 
 //Creer une activite (POST)
 router.route('/activite').post((req, res) => {
-    actionActivite.creerActivite(res,req);
+    actionActivite.creerActivite(req , res);
 	
 })
 //GET 
 .get((req, res) => {
-	actionActivite.afficherListeActivite(res,req);
+	actionActivite.afficherListeActivite(req , res);
 });
 
 //UPDATE
 router.route('/Activite/:ActiviteID').put((req, res) => {
-	actionActivite.modifierActivite(res,req);
+	actionActivite.modifierActivite(req,res);
 })
 //DELETE
 .delete((req,res) => {
-	actionActivite.supprimerActivite(res,req);
+	actionActivite.supprimerActivite(req,res);
 });
 
 module.exports = router;
