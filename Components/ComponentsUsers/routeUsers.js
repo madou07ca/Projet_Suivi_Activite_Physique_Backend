@@ -16,7 +16,7 @@ router.route('/users').post((req, res) => {
 })
 //GET 
 .get((req, res) => {
-	actionUsers.afficherListeUsers(res,req);
+	actionUsers.afficherListeUsers(req , res);
 });
 
 module.exports = router;

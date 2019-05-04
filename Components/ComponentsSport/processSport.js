@@ -22,10 +22,15 @@ module.exports = {
 	},
 
 	//Listes
-	afficherListeSport : (res, req)=> {
-		 sportModel.find((err, sport) => {
-			err ? res.send(err) : res.json(sport);
-		}); 
+	afficherListeSport : ()=> {
+			return new Promise((resolve,reject)=>{
+			sportModel.find((err, sport) => {
+				if (err){
+					reject("error")
+				}		
+				resolve(sport);
+			});
+		}) 
 	}
  
 };

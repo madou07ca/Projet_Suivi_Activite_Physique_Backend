@@ -16,7 +16,7 @@ router.route('/sport').post((req, res) => {
 })
 //GET 
 .get((req, res) => {
-	actionSport.afficherListeSport(res,req);
+	actionSport.afficherListeSport(req,res);
 });
 
 module.exports = router;

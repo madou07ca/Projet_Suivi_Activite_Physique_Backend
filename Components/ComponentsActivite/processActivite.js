@@ -45,14 +45,7 @@ module.exports = {
 		
 	},
 
-	//Listes
-	/* afficherListeActivite : (req, res)=> {
-		 activiteModel.find((err, activite) => {
-			err ? res.send(err) : res.json(activite);
-		});  
-		
-	},*/
-
+	//Listes Activites
 	afficherListeActivite : ()=> {
 		return new Promise((resolve,reject)=>{
 			activiteModel.find((err, activite) => {

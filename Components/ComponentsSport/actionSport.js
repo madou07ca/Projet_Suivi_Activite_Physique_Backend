@@ -6,7 +6,14 @@ module.exports = {
        processSport.creerSport(res, req);
    },
 
-   afficherListeSport(res, req){
-       processSport.afficherListeSport(res, req);
+   afficherListeSport(req, res){
+       processSport.afficherListeSport()
+       .then((result)=>{
+        res.status(200).json(result)
+    })
+    .catch((typeErr)=>{
+        res.status(400).json(typeErr)
+    })
    }
+
 };

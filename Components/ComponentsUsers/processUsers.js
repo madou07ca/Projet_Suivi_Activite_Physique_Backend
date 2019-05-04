@@ -24,10 +24,16 @@ module.exports = {
 	},
 
 	//Listes
-	afficherListeUsers : (res, req)=> {
-		 UsersModel.find((err, sport) => {
-			err ? res.send(err) : res.json(sport);
-		}); 
+		afficherListeUsers : ()=> {
+			return new Promise((resolve,reject)=>{
+			UsersModel.find((err, users) => {
+				if (err){
+					reject("error")
+				}		
+				resolve(users);
+			});
+		}) 
 	}
+
  
 };

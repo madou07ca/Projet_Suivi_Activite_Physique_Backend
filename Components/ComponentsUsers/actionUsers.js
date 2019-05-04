@@ -6,7 +6,16 @@ module.exports = {
        processUsers.creerUser(req, res);
    },
 
-   afficherListeUsers(res, req){
-       processUsers.afficherListeUsers(res, req);
+   afficherListeUsers(req, res){
+        processUsers.afficherListeUsers()
+        .then((result)=>{
+            res.status(200).json(result)
+        })
+        .catch((typeErr)=>{
+            res.status(400).json(typeErr)
+        })
    }
+   
+
+  
 };
