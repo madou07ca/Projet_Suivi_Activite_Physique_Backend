@@ -28,9 +28,9 @@ var sport = require('./Models/modelsUsers');
 
 
 //Routes
-app.use('/', require('./Controllers/ControllersActivite/routeActivite'))
-app.use('/', require('./Controllers/ControllersSport/routeSport'))
-app.use('/', require('./Controllers/ControllersUsers/routeUsers'))
+app.use('/', require('./Components/ComponentsActivite/routeActivite'))
+app.use('/', require('./Components/ComponentsSport/routeSport'))
+app.use('/', require('./Components/ComponentsUsers/routeUsers'))
 
 app.listen(port, () => {
     console.log('Le serveur est opérationnel sur le numéro de port ' + port);
