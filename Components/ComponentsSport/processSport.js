@@ -4,7 +4,7 @@ var sportModel  = require('../../Models/modelsSport');
 
 
 module.exports = {
-	creerSport : (req , res) => {
+	/* creerSport : (req , res) => {
 	
 		//if(Object.keys(req.body).length === 7) {
 			//Attributs
@@ -19,6 +19,19 @@ module.exports = {
 		//	res.json({error: "Vérifier les champs requis: sport, douleurAvant, douleurApres."});
 		//}
 		
+	}, */
+
+	creerSport : (nomSport) => {
+			return new Promise((resolve , reject)=>{
+				//----
+				let name = nomSport;
+				let sport = new sportModel({name});
+				sport.save().then(()=> {
+					resolve(sport)
+				},(err)=>{
+					reject(err)
+				})
+			})	
 	},
 
 	//Listes

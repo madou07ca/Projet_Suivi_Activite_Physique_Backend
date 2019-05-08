@@ -11,7 +11,7 @@ router.use(bodyParser.json());
 
 //Creer un user (POST)
 router.route('/users').post((req, res) => {
-    actionUsers.creerUser(res,req);
+    actionUsers.creerUser(req,res);
 	
 })
 //GET 

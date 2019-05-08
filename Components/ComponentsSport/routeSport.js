@@ -11,7 +11,7 @@ router.use(bodyParser.json());
 
 //Creer une activite (POST)
 router.route('/sport').post((req, res) => {
-    actionSport.creerSport(res,req);
+    actionSport.creerSport(req,res);
 	
 })
 //GET 

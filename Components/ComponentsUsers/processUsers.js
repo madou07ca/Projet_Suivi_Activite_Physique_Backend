@@ -4,7 +4,7 @@ var UsersModel  = require('../../Models/modelsUsers');
 
 
 module.exports = {
-	creerUser : (res, req) => {
+	/* creerUser : (req, res) => {
 	
 		//if(Object.keys(req.body).length === 7) {
 			//Attributs
@@ -20,6 +20,19 @@ module.exports = {
 				//Si une erreur est survenue lors de la sauvegarde, envoyez-la. Sinon, envoyez un message de confirmation
 				err ? res.send(err) : res.json({message: 'Utilisateur ajouté!'});
 			});	
+		
+	}, */
+	creerUser : (nom,prenom,username,password) => {
+		return new Promise((resolve , reject)=>{
+			//-----Attributs
+			let user = new UsersModel({nom,prenom,username,password});
+			//enregistrer ds la BDD
+			user.save().then(()=> {
+				resolve(user)
+			},(err)=>{
+				reject(err)
+			})
+		});	
 		
 	},
 
