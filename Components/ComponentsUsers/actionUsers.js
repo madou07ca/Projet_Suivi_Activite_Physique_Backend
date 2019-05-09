@@ -1,4 +1,5 @@
 const processUsers = require('./processUsers');
+var passwordHash = require('password-hash');
 
 module.exports = {
 
@@ -8,7 +9,9 @@ module.exports = {
 
    creerUser(req, res){
        const {nom,prenom,username,password} = req.body;
-    processUsers.creerUser(nom,prenom,username,password)
+       //hash password 
+			var hashedPassword = passwordHash.generate(password);
+    processUsers.creerUser(nom,prenom,username,hashedPassword)
         .then((result)=>{
             res.status(200).json({"message" : "Utilisateur ajouté"})
         // res.status(200).json(result)
