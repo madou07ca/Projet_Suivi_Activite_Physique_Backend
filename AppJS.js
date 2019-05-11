@@ -1,7 +1,7 @@
-var express = require('express');
-var mongoose = require('mongoose');
+const express = require('express');
+const mongoose = require('mongoose');
 
-var app = express();
+const app = express();
 
 
 // --- middleware

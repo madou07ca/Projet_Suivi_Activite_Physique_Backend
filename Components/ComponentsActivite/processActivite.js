@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
-var moment = require('moment');
-var activiteModel  = require('../../Models/modelsActivite');
+const mongoose = require('mongoose');
+const moment = require('moment');
+const activiteModel  = require('../../Models/modelsActivite');
 
 
 
@@ -9,8 +9,8 @@ module.exports = {
 	
 		if(Object.keys(req.body).length === 7) {
 			// Heure et Date
-			var heure = new moment().format('HH') + ":" + new moment().format('mm');
-			var date = new moment().format('DD') + "/" + new moment().format('MM') + "/" + new moment().format('YYYY');
+			const heure = new moment().format('HH') + ":" + new moment().format('mm');
+			const date = new moment().format('DD') + "/" + new moment().format('MM') + "/" + new moment().format('YYYY');
 			//Attributs
 			const {sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree} = req.body;
 			

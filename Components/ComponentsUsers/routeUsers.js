@@ -1,9 +1,9 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var actionUsers = require ('./actionUsers');
+const express = require('express');
+const bodyParser = require('body-parser');
+const actionUsers = require ('./actionUsers');
 
 
-var router = express.Router();
+const router = express.Router();
 
 
 router.use(bodyParser.json());

@@ -1,9 +1,9 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var actionActivite = require ('./actionActivite');
+const express = require('express');
+const bodyParser = require('body-parser');
+const actionActivite = require ('./actionActivite');
 
 
-var router = express.Router();
+const router = express.Router();
 
 //const port = 3030; //Port
 

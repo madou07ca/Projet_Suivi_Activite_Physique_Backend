@@ -1,12 +1,12 @@
 const processActivite = require('./processActivite');
-var moment = require('moment');
+const moment = require('moment');
 
 module.exports = {
 
    creerActivite(req, res){
        // Heure et Date
-       var heure = new moment().format('HH') + ":" + new moment().format('mm');
-       var date = new moment().format('DD') + "/" + new moment().format('MM') + "/" + new moment().format('YYYY');
+       const heure = new moment().format('HH') + ":" + new moment().format('mm');
+       const date = new moment().format('DD') + "/" + new moment().format('MM') + "/" + new moment().format('YYYY');
        //Attributs
        const {sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree} = req.body;
        const newActivite = processActivite.creerActivite(sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree,date , heure);

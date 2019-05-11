@@ -22,9 +22,9 @@ app.use(bodyParser.json());
 //app.use(bodyParser.json());
 
 
-var activite = require('./Models/modelsActivite');
-var sport = require('./Models/modelsSport');
-var sport = require('./Models/modelsUsers');
+const activite = require('./Models/modelsActivite');
+const sport = require('./Models/modelsSport');
+const sport = require('./Models/modelsUsers');
 
 
 //Routes

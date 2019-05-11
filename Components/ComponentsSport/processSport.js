@@ -1,5 +1,5 @@
-var mongoose = require('mongoose');
-var sportModel  = require('../../Models/modelsSport');
+const mongoose = require('mongoose');
+const sportModel  = require('../../Models/modelsSport');
 
 
 
