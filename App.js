@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 
 const activite = require('./Models/modelsActivite');
 const sport = require('./Models/modelsSport');
-const sport = require('./Models/modelsUsers');
+const users = require('./Models/modelsUsers');
 
 
 //Routes
