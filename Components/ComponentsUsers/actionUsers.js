@@ -7,7 +7,7 @@ module.exports = {
        processUsers.creerUser(req, res);
    }, */
 
-   creerUser(req, res){
+   /*creerUser(req, res){
        const {nom,prenom,username,password} = req.body;
        //hash password 
 			const hashedPassword = passwordHash.generate(password);
@@ -19,23 +19,51 @@ module.exports = {
     .catch((typeErr)=>{
     res.status(400).json(typeErr)
     })
-},
+   },*/
 
+ creerUser(req, res){
+  const user = {
 
+    username: req.body.username,
 
-   creerSport(req, res){
-    // processSport.creerSport(res, req);
-    const name = req.body.name;
-    processSport.creerSport(name)
-      .then((result)=>{
-           res.status(200).json({"message" : "sport ajouté"})
-         // res.status(200).json(result)
-      })
-    .catch((typeErr)=>{
-      res.status(400).json(typeErr)
+    password: passwordHash.generate(req.body.password)
+
+}
+  //hash password 
+ //const hashedPassword = passwordHash.generate(password);
+    processUsers.creerUser(user)
+    .then((result)=>{
+        res.status(200).json({"message" : "Utilisateur ajouté"})
+    // res.status(200).json(result)
     })
- },
-   afficherListeUsers(req, res){
+    .catch((typeErr)=>{
+    res.status(400).json(typeErr)
+    })
+}, 
+
+ loginUser(req, res){
+  const user = {
+
+    username: req.body.username,
+
+    password: req.body.password
+
+  }
+  console.log("blabla")
+
+processUsers.loginUser(user)
+   .then((result)=>{
+       res.status(200).json({"message" : "Authentification réussi"})
+   // res.status(200).json(result)
+   })
+.catch((typeErr)=>{
+res.status(400).json(typeErr)
+})
+}, 
+
+
+
+afficherListeUsers(req, res){
         processUsers.afficherListeUsers()
         .then((result)=>{
             res.status(200).json(result)

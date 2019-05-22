@@ -1,16 +1,16 @@
 const mongoose = require('mongoose'); //Library for MongoDB
-
+const jwt = require('jwt-simple');
 //const crypto      = require('crypto');
 
 //Model
-const Users = mongoose.model('Users', {
+let Users = mongoose.model('Users', {
 	nom: {
 		type : String, 
-		required : true
+		required : false
     },
     prenom: {
 		type : String, 
-		required : true
+		required : false
     },
     username: {
 		type : String, 
@@ -20,42 +20,27 @@ const Users = mongoose.model('Users', {
 		type : String, 
 		required : true
 		},
-		/* token: {
-			type : String, 
-			required : true 
-	}*/
-});
+})
 
-//----------------
 
-/* Users.methods.generateToken = function(){
+Users.methods = {
 
-	return new Promise((resolve, reject) =>{
+	authentification: function (password) {
 
-			// ---- algo
+		return passwordHash.verify(password, this.password);
 
-			this.token = Date.now();
+	},
 
-			this.save().then(()=>{
+	getToken: function () {
 
-					resolve({
+		return jwt.encode(this, config.secret);
 
-							id : this.id,
+	},
+	getUtilisateur: function () {
 
-							nom : this.nom,
-							prenom : this.prenom,
+		return this.password;
 
-							token : this.token
+	}
 
-					})
-
-			},(err)=>{
-
-					reject(err)
-
-			})
-
-	})
-
-}; */
+}
 module.exports = Users;
