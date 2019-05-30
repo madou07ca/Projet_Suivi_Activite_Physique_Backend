@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Users  = require('../../Models/modelsUsers');
+const passwordHash = require('password-hash');
 
 
 
@@ -53,6 +54,7 @@ module.exports = {
 				reject(err);
 
 			} else
+			
 			{   if(result){
 				reject(result);
 			}else{
@@ -76,14 +78,18 @@ module.exports = {
 
 			username: user.username
 
-		}, function (err, users) {
+		}, function (err, result) {
 			if (err){
 				reject(err);
 			}else{
-				if(users.authentification(user.password)){
-					resolve(users)
+				if(passwordHash.verify(user.password, result.password)){
+					console.log("ressi");
+					console.log(result)
+					resolve(result)
+					}
+					
 				}
-			}
+
 		})
 	})
 			
@@ -201,7 +207,6 @@ module.exports = {
 				resolve(users);
 			});
 		}) 
-	}
-
+	},
  
 };

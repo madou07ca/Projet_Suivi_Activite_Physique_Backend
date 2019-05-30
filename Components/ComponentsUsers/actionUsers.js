@@ -1,5 +1,7 @@
 const processUsers = require('./processUsers');
 const passwordHash = require('password-hash');
+const jwt = require('jwt-simple');
+const config = require ('../../Config')
 
 module.exports = {
 
@@ -53,7 +55,11 @@ module.exports = {
 
 processUsers.loginUser(user)
    .then((result)=>{
-       res.status(200).json({"message" : "Authentification réussi"})
+        let token = jwt.encode(result,config.secret);
+       res.status(200).json({
+           "message" : "Authentification réussi",
+           "token" :token 
+        })
    // res.status(200).json(result)
    })
 .catch((typeErr)=>{
@@ -63,7 +69,7 @@ res.status(400).json(typeErr)
 
 
 
-afficherListeUsers(req, res){
+   afficherListeUsers(req, res){
         processUsers.afficherListeUsers()
         .then((result)=>{
             res.status(200).json(result)
