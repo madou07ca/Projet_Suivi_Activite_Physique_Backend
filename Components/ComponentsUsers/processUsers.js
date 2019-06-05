@@ -55,7 +55,8 @@ module.exports = {
 
 			} else
 			
-			{   if(result){
+			{   if(!result){
+				console.log("cet utilisateur existe déjà!!!")
 				reject(result);
 			}else{
 				let user = new Users(users);
@@ -76,17 +77,30 @@ module.exports = {
 	return new Promise(function (resolve, reject) {
 		Users.findOne({ 
 
-			username: user.username
+			username: user.username,
+			//password : user.password,
 
 		}, function (err, result) {
 			if (err){
 				reject(err);
 			}else{
-				if(passwordHash.verify(user.password, result.password)){
-					console.log("ressi");
-					console.log(result)
-					resolve(result)
+				if(!result){
+					console.log("Ce mail n'existe pas!!!")
+					reject(result)
+				} else{
+					if(passwordHash.verify(user.password, result.password)){
+						console.log("user.password", user.password);
+						console.log("result.password",result.password)
+						resolve(result)
+						}
+					else{
+						reject(result);
+						console.log("Mot de passe Incorect!!!")
+						console.log("user.password", user.password);
+						console.log("result.password",result.password)
 					}
+
+				}
 					
 				}
 

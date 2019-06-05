@@ -1,7 +1,8 @@
+//import {AsyncStorage} from 'react-native';
 const processUsers = require('./processUsers');
 const passwordHash = require('password-hash');
 const jwt = require('jwt-simple');
-const config = require ('../../Config')
+const config = require ('../../../Config')
 
 module.exports = {
 
@@ -35,12 +36,17 @@ module.exports = {
  //const hashedPassword = passwordHash.generate(password);
     processUsers.creerUser(user)
     .then((result)=>{
-        res.status(200).json({"message" : "Utilisateur ajouté"})
+        res.status(200).json({
+          "message" : "Utilisateur ajouté",
+          "id" : result._id})
     // res.status(200).json(result)
     })
     .catch((typeErr)=>{
-    res.status(400).json(typeErr)
-    })
+      //res.status(400).json(typeErr)
+      res.status(400).json({
+          "message" : "Verifier les infos"
+      })
+      })
 }, 
 
  loginUser(req, res){
@@ -56,14 +62,18 @@ module.exports = {
 processUsers.loginUser(user)
    .then((result)=>{
         let token = jwt.encode(result,config.secret);
+      console.log("Identifiant", result._id)
        res.status(200).json({
            "message" : "Authentification réussi",
-           "token" :token 
+           "token" :token,
+           "id" : result._id 
         })
-   // res.status(200).json(result)
    })
 .catch((typeErr)=>{
-res.status(400).json(typeErr)
+//res.status(400).json(typeErr)
+res.status(400).json({
+    "message" : "Mot de passe / Mail Incorrect"
+})
 })
 }, 
 
