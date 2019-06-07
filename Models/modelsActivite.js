@@ -38,6 +38,10 @@ const Activite = mongoose.model('Activite', {
 	heure : {
 		type : String, 
 		required : true
+	},
+	userId : {
+		type : String,
+		required : true
 	}
 });
 

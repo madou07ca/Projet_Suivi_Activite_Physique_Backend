@@ -55,13 +55,14 @@ module.exports = {
 
 			} else
 			
-			{   if(!result){
+			{   if(result){
 				console.log("cet utilisateur existe déjà!!!")
 				reject(result);
 			}else{
 				let user = new Users(users);
 				//enregistrer ds la BDD
 				user.save().then(()=> {
+					//console.log("userrrrrrrrrrrr:::",user)
 					resolve(user)
 				},(err)=>{
 					reject(err)

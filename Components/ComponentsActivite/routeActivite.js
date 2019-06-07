@@ -16,9 +16,9 @@ router.use(bodyParser.json());
 router.route('/activite').post((req, res) => {
     actionActivite.creerActivite(req , res);
 	
-})
+});
 //GET 
-.get((req, res) => {
+router.route('/activite/:userId').get((req, res) => {
 	actionActivite.afficherListeActivite(req , res);
 });
 

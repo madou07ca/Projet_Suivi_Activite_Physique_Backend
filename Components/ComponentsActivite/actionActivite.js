@@ -1,5 +1,6 @@
 const processActivite = require('./processActivite');
 const moment = require('moment');
+//import {AsyncStorage} from 'react-native';
 
 module.exports = {
 
@@ -7,15 +8,17 @@ module.exports = {
        // Heure et Date
        const heure = new moment().format('HH') + ":" + new moment().format('mm');
        const date = new moment().format('DD') + "/" + new moment().format('MM') + "/" + new moment().format('YYYY');
+       //userId = "5555"
        //Attributs
-       const {sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree} = req.body;
-       const newActivite = processActivite.creerActivite(sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree,date , heure);
+       const {sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree, userId} = req.body;
+       const newActivite = processActivite.creerActivite(sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree,date , heure, userId);
 
        res.json({message: 'Activité Crée'})
    },
 
    afficherListeActivite(req, res){
-       processActivite.afficherListeActivite()
+    const userId = req.params.userId;
+       processActivite.afficherListeActivite(userId)
        .then((result)=>{
            res.status(200).json(result)
        })

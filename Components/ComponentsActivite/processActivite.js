@@ -28,9 +28,9 @@ module.exports = {
 		}
 		
 	},*/
-	creerActivite : (sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree, date , heure) => {
+	creerActivite : (sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree, date , heure, userId) => {
 			//Créer un nouveau modèle d'activité
-			let activite = new activiteModel({sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree, date , heure});
+			let activite = new activiteModel({sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree, date , heure,userId});
 			//enregistrer ds la BDD
 			activite.save(err => {
 				//Si une erreur est survenue lors de la sauvegarde, envoyez-la. Sinon, envoyez un message de confirmation
@@ -46,9 +46,9 @@ module.exports = {
 	},
 
 	//Listes Activites
-	afficherListeActivite : ()=> {
+	afficherListeActivite : (id)=> {
 		return new Promise((resolve,reject)=>{
-			activiteModel.find((err, activite) => {
+			activiteModel.find({userId : id},(err, activite) => {
 				if (err){
 					reject("error")
 				}		

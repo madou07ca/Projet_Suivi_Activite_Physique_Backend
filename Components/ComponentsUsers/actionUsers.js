@@ -2,7 +2,7 @@
 const processUsers = require('./processUsers');
 const passwordHash = require('password-hash');
 const jwt = require('jwt-simple');
-const config = require ('../../../Config')
+const config = require ('../../Config')
 
 module.exports = {
 
@@ -32,13 +32,13 @@ module.exports = {
     password: passwordHash.generate(req.body.password)
 
 }
-  //hash password 
- //const hashedPassword = passwordHash.generate(password);
+ console.log("pass:::", useer.password)
     processUsers.creerUser(user)
     .then((result)=>{
         res.status(200).json({
-          "message" : "Utilisateur ajouté",
-          "id" : result._id})
+          "message" : "Utilisateur ajouté"
+         // "id" : result._id
+        })
     // res.status(200).json(result)
     })
     .catch((typeErr)=>{
@@ -67,12 +67,14 @@ processUsers.loginUser(user)
            "message" : "Authentification réussi",
            "token" :token,
            "id" : result._id 
-        })
+        }) 
+       
    })
 .catch((typeErr)=>{
+  console.log("Wadi",typeErr)
 //res.status(400).json(typeErr)
 res.status(400).json({
-    "message" : "Mot de passe / Mail Incorrect"
+    "message" : typeErr
 })
 })
 }, 
