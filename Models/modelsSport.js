@@ -6,6 +6,10 @@ const Sport = mongoose.model('Sport', {
 	name: {
 		type : String, 
 		required : true
+	},
+	userId : {
+		type : String,
+		required : false
 	}
 });
 

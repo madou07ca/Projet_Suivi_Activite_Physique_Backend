@@ -4,8 +4,8 @@ module.exports = {
 
     creerSport(req, res){
       // processSport.creerSport(res, req);
-      const name = req.body.name;
-      processSport.creerSport(name)
+      const { name, userId} = req.body; 
+      processSport.creerSport(name, userId)
         .then((result)=>{
              res.status(200).json({"message" : "sport ajouté"})
            // res.status(200).json(result)
@@ -17,7 +17,8 @@ module.exports = {
 
 
    afficherListeSport(req, res){
-       processSport.afficherListeSport()
+    const userId = req.params.userId;
+       processSport.afficherListeSport(userId)
        .then((result)=>{
         res.status(200).json(result)
     })

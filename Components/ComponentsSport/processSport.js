@@ -21,11 +21,11 @@ module.exports = {
 		
 	}, */
 
-	creerSport : (nomSport) => {
+	creerSport : (name, userId) => {
 			return new Promise((resolve , reject)=>{
 				//----
-				let name = nomSport;
-				let sport = new sportModel({name});
+				//let name = nomSport;
+				let sport = new sportModel({name , userId});
 				sport.save().then(()=> {
 					resolve(sport)
 				},(err)=>{
@@ -35,9 +35,9 @@ module.exports = {
 	},
 
 	//Listes
-	afficherListeSport : ()=> {
+	afficherListeSport : (userId)=> {
 			return new Promise((resolve,reject)=>{
-			sportModel.find((err, sport) => {
+			sportModel.find({userId : userId},(err, sport) => {
 				if (err){
 					reject("error")
 				}		

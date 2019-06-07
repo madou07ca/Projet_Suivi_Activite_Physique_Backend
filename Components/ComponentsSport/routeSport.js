@@ -13,9 +13,9 @@ router.use(bodyParser.json());
 router.route('/sport').post((req, res) => {
     actionSport.creerSport(req,res);
 	
-})
+});
 //GET 
-.get((req, res) => {
+router.route('/sport/:userId').get((req, res) => {
 	actionSport.afficherListeSport(req,res);
 });
 

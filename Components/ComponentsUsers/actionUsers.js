@@ -32,7 +32,6 @@ module.exports = {
     password: passwordHash.generate(req.body.password)
 
 }
- console.log("pass:::", useer.password)
     processUsers.creerUser(user)
     .then((result)=>{
         res.status(200).json({
