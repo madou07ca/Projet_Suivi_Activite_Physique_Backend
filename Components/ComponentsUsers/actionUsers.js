@@ -70,7 +70,6 @@ processUsers.loginUser(user)
        
    })
 .catch((typeErr)=>{
-  console.log("Wadi",typeErr)
 //res.status(400).json(typeErr)
 res.status(400).json({
     "message" : typeErr
