@@ -1,4 +1,4 @@
-# Projet Suivi Activité Physique
+# Projet Suivi Activité Physique "HEALTHCARE"
 
 Le but de ce projet est de réaliser une application qui permet à un utilisateur de suivre son activité physique.
 L'utilisateur peut lancer une séance en choisissant ou en ajoutant un sport.
