@@ -1,30 +1,13 @@
-const mongoose = require('mongoose');
+//*********Modules*************/
 const sportModel  = require('../../Models/modelsSport');
 
-
+//*******************************/
 
 module.exports = {
-	/* creerSport : (req , res) => {
-	
-		//if(Object.keys(req.body).length === 7) {
-			//Attributs
-			const {name} = req.body;
-			let sport = new sportModel({name});
-			//enregistrer ds la BDD
-			sport.save(err => {
-				//Si une erreur est survenue lors de la sauvegarde, envoyez-la. Sinon, envoyez un message de confirmation
-				err ? res.send(err) : res.json({message: 'Sport ajouté!'});
-			});	
-		//} else{
-		//	res.json({error: "Vérifier les champs requis: sport, douleurAvant, douleurApres."});
-		//}
-		
-	}, */
-
+//===========Cette methode permet d'ajouter un sport ds la BDD=============
+//=========================================================================
 	creerSport : (name, userId) => {
 			return new Promise((resolve , reject)=>{
-				//----
-				//let name = nomSport;
 				let sport = new sportModel({name , userId});
 				sport.save().then(()=> {
 					resolve(sport)
@@ -33,10 +16,13 @@ module.exports = {
 				})
 			})	
 	},
+//=========================================================================
 
-	//Listes
-	afficherListeSport : (userId)=> {
-			return new Promise((resolve,reject)=>{
+//===========Cette methode affiche la liste des sports====================
+//=========================================================================
+	afficherListeSport : (userId)=> 
+	{
+		return new Promise((resolve,reject)=>{
 			sportModel.find({userId : userId},(err, sport) => {
 				if (err){
 					reject("error")
@@ -45,5 +31,6 @@ module.exports = {
 			});
 		}) 
 	}
+//=================================FIN de la methode=================================
  
 };

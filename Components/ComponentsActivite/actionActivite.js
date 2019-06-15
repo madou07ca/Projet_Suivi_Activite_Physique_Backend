@@ -1,6 +1,5 @@
 const processActivite = require('./processActivite');
 const moment = require('moment');
-//import {AsyncStorage} from 'react-native';
 
 module.exports = {
 
@@ -8,12 +7,16 @@ module.exports = {
        // Heure et Date
        const heure = new moment().format('HH') + ":" + new moment().format('mm');
        const date = new moment().format('DD') + "/" + new moment().format('MM') + "/" + new moment().format('YYYY');
-       //userId = "5555"
        //Attributs
        const {sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree, userId} = req.body;
-       const newActivite = processActivite.creerActivite(sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree,date , heure, userId);
-
-       res.json({message: 'Activité Crée'})
+      processActivite.creerActivite(sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree,date , heure, userId)
+       .then((result)=>{
+           // res.status(200).json(result)
+            res.status(200).json(result,{message: 'Activité Crée'})
+            })
+        .catch((typeErr)=>{
+        res.status(400).json(typeErr)
+    })
    },
 
    afficherListeActivite(req, res){
@@ -29,13 +32,10 @@ module.exports = {
 
    modifierActivite(req , res){
        const activiteID = req.params.ActiviteID;
-       const activite = processActivite.modifierActivite(
-           activiteID,
-           req.body,
-       );
-       //res.send(activite);
-       res.json(activite);
-       console.log(activiteID);
+       const activite = processActivite.modifierActivite(activiteID,req.body)
+       res.send(activite);
+       //res.json(activite);
+       //console.log(activiteID);
    },
 
    supprimerActivite(req,res){

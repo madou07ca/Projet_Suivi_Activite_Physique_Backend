@@ -5,10 +5,6 @@ const actionActivite = require ('./actionActivite');
 
 const router = express.Router();
 
-//const port = 3030; //Port
-
-//const activite_process = require('./processActivite');
-
 router.use(bodyParser.json());
 
 

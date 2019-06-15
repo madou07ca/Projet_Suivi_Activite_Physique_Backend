@@ -1,45 +1,13 @@
-const mongoose = require('mongoose');
+//**********Module**********/
 const Users  = require('../../Models/modelsUsers');
+//passwordHash pour la hacher clé avant l'enregistrement
 const passwordHash = require('password-hash');
 
 
 
 
 module.exports = {
-	/* creerUser : (req, res) => {
-	
-		//if(Object.keys(req.body).length === 7) {
-			//Attributs
-            //const {nom, prenom, username, password} = req.body;
-			let user = new Users({
-                nom : req.body.nom, 
-                prenom : req.body.prenom, 
-                username : req.body.username, 
-                password : req.body.password,
-            });
-			//enregistrer ds la BDD
-			user.save(err => {
-				//Si une erreur est survenue lors de la sauvegarde, envoyez-la. Sinon, envoyez un message de confirmation
-				err ? res.send(err) : res.json({message: 'Utilisateur ajouté!'});
-			});	
-		
-	}, */
-	/*creerUser : (nom,prenom,username,password) => {
-		return new Promise((resolve , reject)=>{
-			//-----Attributs
-			let user = new Users({nom,prenom,username,password});
-			//enregistrer ds la BDD
-			user.save().then(()=> {
-				resolve(user)
-			},(err)=>{
-				reject(err)
-			})
-		});	
-		
-	},*/
-
-
-	/********************************************************************************************* */
+/******************************Creer un compte************************************************************ */
 	 creerUser : (users) => {
 		return new Promise(function (resolve, reject) {
 
@@ -60,9 +28,8 @@ module.exports = {
 				reject(result);
 			}else{
 				let user = new Users(users);
-				//enregistrer ds la BDD
+				//enregistrer le user ds la BDD
 				user.save().then(()=> {
-					//console.log("userrrrrrrrrrrr:::",user)
 					resolve(user)
 				},(err)=>{
 					reject(err)
@@ -74,145 +41,44 @@ module.exports = {
 	})
 }, 
 
+/*************************************FIN********************************************************** */
+
+/******************************Connexion********************************************************** */
  loginUser : (user) => {
 	return new Promise(function (resolve, reject) {
 		Users.findOne({ 
-
 			username: user.username,
 			//password : user.password,
+			}, function (err, result) {
+				if (err){
+					reject(err);
+				}else{
+						if(!result){
+							console.log("Ce mail n'existe pas!!!")
+							reject(result)
+						} else{
+							if(passwordHash.verify(user.password, result.password)){
+								console.log("user.password", user.password);
+								console.log("result.password",result.password)
+								resolve(result)
+								}
+							else{
+								reject(result);
+								console.log("Mot de passe Incorect!!!")
+								console.log("user.password", user.password);
+								console.log("result.password",result.password)
+							}
 
-		}, function (err, result) {
-			if (err){
-				reject(err);
-			}else{
-				if(!result){
-					console.log("Ce mail n'existe pas!!!")
-					reject(result)
-				} else{
-					if(passwordHash.verify(user.password, result.password)){
-						console.log("user.password", user.password);
-						console.log("result.password",result.password)
-						resolve(result)
 						}
-					else{
-						reject(result);
-						console.log("Mot de passe Incorect!!!")
-						console.log("user.password", user.password);
-						console.log("result.password",result.password)
-					}
-
-				}
-					
+						
 				}
 
 		})
-	})
-			
+	})			
+},
+/*************************************FIN************************************************************************** */
 
-}, 
-
-	 /*  creerUser : (user) => {
-		return new Promise(function (resolve, reject) {
- 
-		Users.findOne({ 
-
-			username: Users.username
-
-		}, function (err, result) {
-
-			if (err) {
-
-				reject(500);
-
-			} else {
-
-				if (result) {
-
-					reject(204)
-
-				} else {
-
-					resolve(true)
-
-				}
-
-			}
-
-		})
-
-	}).then(function () {
-
-		var _u = new Users({user});
-
-		_u.save(function (err, user) {
-
-			if (err) {
-
-				res.status(500).json({
-
-					"text": "Erreur interne"
-					
-
-				})
-				console.log(err)
-
-			} else {
-
-				res.status(200).json({
-
-					"text": "Succès",
-
-					"token": user.getToken(),
-
-				})
-				console.log("succès")
-
-			}
-
-		})
-
-	}, function (error) {
-
-		switch (error) {
-
-			case 500:
-
-				res.status(500).json({
-
-					"text": "Erreur interne"
-
-				})
-				console.log("succès")
-
-				break;
-
-			case 204:
-
-				res.status(204).json({
-
-					"text": "L'adresse email existe déjà"
-
-				})
-				console.log("L'adresse email existe déjà")
-
-				break;
-
-			default:
-
-				res.status(500).json({
-
-					"text": "Erreur interne"
-
-				})
-				console.log("erreur interne")
-
-		}
-
-	});
-},  */
-
-	/********************************************************************************************* */
-	//Listes
+/******************************Afficher la liste des users********************************************************** */
 		afficherListeUsers : ()=> {
 			return new Promise((resolve,reject)=>{
 			Users.find((err, users) => {
@@ -223,5 +89,5 @@ module.exports = {
 			});
 		}) 
 	},
- 
+/*******************************************FIN*********************************************************************** */ 
 };

@@ -1,64 +1,43 @@
-//import {AsyncStorage} from 'react-native';
+//********Modules************/
 const processUsers = require('./processUsers');
 const passwordHash = require('password-hash');
 const jwt = require('jwt-simple');
 const config = require ('../../Config')
 
+//************************* */
 module.exports = {
-
- /*   creerUser(req, res){
-       processUsers.creerUser(req, res);
-   }, */
-
-   /*creerUser(req, res){
-       const {nom,prenom,username,password} = req.body;
-       //hash password 
-			const hashedPassword = passwordHash.generate(password);
-    processUsers.creerUser(nom,prenom,username,hashedPassword)
-        .then((result)=>{
-            res.status(200).json({"message" : "Utilisateur ajouté"})
-        // res.status(200).json(result)
-        })
-    .catch((typeErr)=>{
-    res.status(400).json(typeErr)
-    })
-   },*/
-
+//===========Cette methode permet d'ajouter un utlisateur ds la BDD========
+//=========================================================================
  creerUser(req, res){
   const user = {
-
-    username: req.body.username,
-
-    password: passwordHash.generate(req.body.password)
-
-}
+        username: req.body.username,
+        password: passwordHash.generate(req.body.password)
+    }
     processUsers.creerUser(user)
     .then((result)=>{
-        res.status(200).json({
-          "message" : "Utilisateur ajouté"
-         // "id" : result._id
-        })
-    // res.status(200).json(result)
+            res.status(200).json({
+            "message" : "Utilisateur ajouté"
+            })
+        // res.status(200).json(result)
     })
     .catch((typeErr)=>{
-      //res.status(400).json(typeErr)
-      res.status(400).json({
-          "message" : "Verifier les infos"
-      })
-      })
+        //res.status(400).json(typeErr)
+        res.status(400).json({
+            "message" : "Verifier les infos"
+        })
+    })
 }, 
+//=================================FIN de la methode========================
 
+//===========Cette methode permet à un utilisateur de se connecter=========
+//=========================================================================
  loginUser(req, res){
   const user = {
+        username: req.body.username,
+        password: req.body.password
+    }
 
-    username: req.body.username,
-
-    password: req.body.password
-
-  }
-  console.log("blabla")
-
-processUsers.loginUser(user)
+    processUsers.loginUser(user)
    .then((result)=>{
         let token = jwt.encode(result,config.secret);
       console.log("Identifiant", result._id)
@@ -69,15 +48,18 @@ processUsers.loginUser(user)
         }) 
        
    })
-.catch((typeErr)=>{
-//res.status(400).json(typeErr)
-res.status(400).json({
-    "message" : typeErr
-})
-})
+    .catch((typeErr)=>{
+        //res.status(400).json(typeErr)
+        res.status(400).json({
+        "message" : typeErr
+        })
+    })
 }, 
 
+//=================================FIN de la methode=================================
 
+//===========Cette methode permet d'afficher la liste des utilisateurs=====
+//=========================================================================
 
    afficherListeUsers(req, res){
         processUsers.afficherListeUsers()
@@ -88,7 +70,7 @@ res.status(400).json({
             res.status(400).json(typeErr)
         })
    }
-   
+//=================================FIN de la methode=================================   
 
   
 };
