@@ -23,12 +23,12 @@ const Activite = mongoose.model('Activite', {
 		type : String, 
 		required : true
 	},
-	nbKilometre : {
+	nbrKm : {
 		type : String, 
 		required : true
 	},
 	duree : {
-		type : String, 
+		type : Number, 
 		required : true
 	},
 	date : {

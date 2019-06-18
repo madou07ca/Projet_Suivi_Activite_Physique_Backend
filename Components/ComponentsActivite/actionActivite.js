@@ -8,8 +8,8 @@ module.exports = {
        const heure = new moment().format('HH') + ":" + new moment().format('mm');
        const date = new moment().format('DD') + "/" + new moment().format('MM') + "/" + new moment().format('YYYY');
        //Attributs
-       const {sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree, userId} = req.body;
-      processActivite.creerActivite(sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree,date , heure, userId)
+       const {sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbrKm,duree, userId} = req.body;
+      processActivite.creerActivite(sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbrKm,duree,date , heure, userId)
        .then((result)=>{
            // res.status(200).json(result)
             res.status(200).json(result,{message: 'Activité Crée'})

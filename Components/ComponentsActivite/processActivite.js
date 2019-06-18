@@ -6,9 +6,9 @@ const activiteModel  = require('../../Models/modelsActivite');
 
 module.exports = {
 /******************************************************************************************** */
-	creerActivite : (sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree, date , heure, userId) => {
+	creerActivite : (sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbrKm,duree, date , heure, userId) => {
 			//Créer un nouveau modèle d'activité
-			let activite = new activiteModel({sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbKilometre,duree, date , heure,userId});
+			let activite = new activiteModel({sport, douleurAvant, douleurApres, zoneDouleurAvant, zoneDouleurApres, nbrKm,duree, date , heure,userId});
 			//enregistrer ds la BDD
 			activite.save(err => {
 				//Si une erreur est survenue lors de la sauvegarde, envoyez-la. Sinon, envoyez un message de confirmation
